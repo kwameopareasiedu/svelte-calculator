@@ -1,4 +1,6 @@
-<script lang="ts"></script>
+<script lang="ts">
+  import Calculator from "./calculator/calculator.svelte";
+</script>
 
 <main class="h-auto md:h-full md:flex">
   <section
@@ -10,7 +12,7 @@
     </div>
   </section>
 
-  <section class="md:grow">
-    <p>Calculator goes here</p>
+  <section class="grid place-items-center p-6 md:grow">
+    <Calculator />
   </section>
 </main>
