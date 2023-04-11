@@ -1,7 +1,7 @@
 # Svelte Calculator
 A simple beautiful calculator built using Svelte as a learning experience. 
 
-[**Click here to preview the application**]()
+[**Click here to preview the application**](https://kwameopareasiedu.github.io/svelte-calculator/)
 
 ![](./preview.png)
 
