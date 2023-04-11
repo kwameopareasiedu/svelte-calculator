@@ -3,16 +3,17 @@
   import "../../utils.ts";
 
   const opRegex = /[+|\-*\\/]/g;
-  const operators = ["+", "-", "*", "/"];
+  const operators = ["/", "*", "+", "-"];
+  const operatorPriority = { "/": 0, "*": 0, "+": 1, "-": 1 };
   const operatorFns = {
+    "/": (a, b) => a / b,
+    "*": (a, b) => a * b,
     "+": (a, b) => a + b,
     "-": (a, b) => a - b,
-    "*": (a, b) => a * b,
-    "/": (a, b) => a / b,
   };
 
   let operation = "";
-  let result = "";
+  let result = 0;
   $: lastComponent = operation.endsWithAnyOf(operators)
     ? operation.slice(-1)[0]
     : operation.split(opRegex).slice(-1)[0];
@@ -29,12 +30,11 @@
 
     if (val === "Escape") {
       operation = "";
-      result = "";
+      result = 0;
     } else if (val === "Backspace") {
       operation = operation.slice(0, -1);
     } else if (val === "=") {
-      result = compute().toString();
-      // compute();
+      result = compute();
     } else if (operators.includes(val)) {
       if (!operation) {
         if (val === "-") operation += val;
@@ -64,12 +64,18 @@
     let currentToken = "";
     let currentTokenIdx = 0;
     let startsWithNegative = false;
-    // const startsWithNegative = operation.startsWith("-");
+    let orderedOperators = [];
 
     while (currentTokenIdx < len) {
       const char = operation[currentTokenIdx];
 
       if (operators.includes(char)) {
+        orderedOperators = [...orderedOperators, char].sort((op1, op2) => {
+          const p1 = operatorPriority[op1];
+          const p2 = operatorPriority[op2];
+          return p1 - p2;
+        });
+
         if (currentTokenIdx === 0) {
           startsWithNegative = true;
         } else {
@@ -93,7 +99,7 @@
     }
 
     while (tokens.length > 1) {
-      for (const operator of operators) {
+      for (const operator of orderedOperators) {
         const operatorFn = operatorFns[operator];
         const operatorIndex = tokens.indexOf(operator);
 
@@ -106,7 +112,8 @@
           const op2 = rawOp2.includes("%")
             ? 0.01 * parseFloat(rawOp2)
             : parseFloat(rawOp2);
-          tokens.splice(operatorIndex - 1, 3, operatorFn(op1, op2));
+          const res = operatorFn(op1, op2).toString();
+          tokens.splice(operatorIndex - 1, 3, res);
           break;
         }
       }
