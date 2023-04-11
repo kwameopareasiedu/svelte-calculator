@@ -1,30 +1,30 @@
 <script>
   import Numkey from "./numkey.svelte";
-  import { Key, Op } from "./cacluator.const.ts";
+  import { Op } from "./cacluator.ts";
 </script>
 
 <div class="grid grid-cols-4 grid-rows-5 gap-6 h-full p-6">
-  <Numkey action={Op.CLR} on:press>AC</Numkey>
-  <Numkey action={Op.DEL} on:press>&lt;</Numkey>
-  <Numkey action={Key.PERCENT} on:press>%</Numkey>
-  <Numkey action={Op.DIV} on:press>/</Numkey>
+  <Numkey digit={Op.CLR} on:press>AC</Numkey>
+  <Numkey digit={Op.DEL} on:press>C</Numkey>
+  <Numkey digit="%" on:press>%</Numkey>
+  <Numkey digit="/" on:press>/</Numkey>
 
-  <Numkey action={Key.SEVEN} on:press>7</Numkey>
-  <Numkey action={Key.EIGHT} on:press>8</Numkey>
-  <Numkey action={Key.NINE} on:press>9</Numkey>
-  <Numkey action={Op.MUL} on:press>*</Numkey>
+  <Numkey digit="7" on:press>7</Numkey>
+  <Numkey digit="8" on:press>8</Numkey>
+  <Numkey digit="9" on:press>9</Numkey>
+  <Numkey digit="*" on:press>*</Numkey>
 
-  <Numkey action={Key.FOUR} on:press>4</Numkey>
-  <Numkey action={Key.FIVE} on:press>5</Numkey>
-  <Numkey action={Key.SIX} on:press>6</Numkey>
-  <Numkey action={Op.MIN} on:press>-</Numkey>
+  <Numkey digit="4" on:press>4</Numkey>
+  <Numkey digit="5" on:press>5</Numkey>
+  <Numkey digit="6" on:press>6</Numkey>
+  <Numkey digit="-" on:press>-</Numkey>
 
-  <Numkey action={Key.ONE} on:press>1</Numkey>
-  <Numkey action={Key.TWO} on:press>2</Numkey>
-  <Numkey action={Key.THREE} on:press>3</Numkey>
-  <Numkey action={Op.ADD} on:press>+</Numkey>
+  <Numkey digit="1" on:press>1</Numkey>
+  <Numkey digit="2" on:press>2</Numkey>
+  <Numkey digit="3" on:press>3</Numkey>
+  <Numkey digit="+" on:press>+</Numkey>
 
-  <Numkey action={Key.ZERO} on:press>0</Numkey>
-  <Numkey action={Key.DECIMAL} on:press>.</Numkey>
-  <Numkey bg="orange" span="2" action={Op.CALC} on:press>=</Numkey>
+  <Numkey digit="0" on:press>0</Numkey>
+  <Numkey digit="." on:press>.</Numkey>
+  <Numkey digit="=" bg="orange" span="2" on:press>=</Numkey>
 </div>

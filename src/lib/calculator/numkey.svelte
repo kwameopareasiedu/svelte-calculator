@@ -1,23 +1,37 @@
 <script>
-  import { createEventDispatcher } from "svelte";
+  import { createEventDispatcher, onMount } from "svelte";
 
+  export let digit = "";
   export let span = 1;
   export let bg = "";
   export let color = "white";
-  export let action = "";
 
-  const EVENT_PRESS = "press";
+  const pressEventName = "press";
   const dispatch = createEventDispatcher();
 
-  function press() {
-    dispatch(EVENT_PRESS, { action });
+  function onClick() {
+    dispatch(pressEventName, { action: digit });
   }
+
+  function onKeyUp(e) {
+    if (e.key === digit.toString()) {
+      dispatch(pressEventName, { action: digit });
+    }
+  }
+
+  onMount(function () {
+    window.addEventListener("keyup", onKeyUp);
+
+    return function () {
+      window.removeEventListener("keyup", onKeyUp);
+    };
+  });
 </script>
 
 <button
   class="w-full py-6 text-center rounded-xl transition-shadow active:shadow-none"
   style={`--bg: ${bg}; --color: ${color}; --span: ${span}`}
-  on:click={press}
+  on:click={onClick}
 >
   <slot />
 </button>
