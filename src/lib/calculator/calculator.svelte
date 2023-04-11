@@ -110,42 +110,6 @@
           break;
         }
       }
-
-      /*const divisionIndex = tokens.indexOf("/");
-
-      if (divisionIndex > -1) {
-        const op1 = parseFloat(tokens[divisionIndex - 1]);
-        const op2 = parseFloat(tokens[divisionIndex + 1]);
-        tokens.splice(divisionIndex - 1, 3, op1 / op2);
-        continue;
-      }
-
-      const multiplicationIndex = tokens.indexOf("*");
-
-      if (multiplicationIndex > -1) {
-        const op1 = parseFloat(tokens[multiplicationIndex - 1]);
-        const op2 = parseFloat(tokens[multiplicationIndex + 1]);
-        tokens.splice(multiplicationIndex - 1, 3, op1 * op2);
-        continue;
-      }
-
-      const additionIndex = tokens.indexOf("+");
-
-      if (additionIndex > -1) {
-        const op1 = parseFloat(tokens[additionIndex - 1]);
-        const op2 = parseFloat(tokens[additionIndex + 1]);
-        tokens.splice(additionIndex - 1, 3, op1 + op2);
-        continue;
-      }
-
-      const subtractionIndex = tokens.indexOf("-");
-
-      if (subtractionIndex > -1) {
-        const op1 = parseFloat(tokens[subtractionIndex - 1]);
-        const op2 = parseFloat(tokens[subtractionIndex + 1]);
-        tokens.splice(subtractionIndex - 1, 3, op1 - op2);
-        continue;
-      }*/
     }
 
     return Number(tokens[0]);
